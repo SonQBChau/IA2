@@ -66,7 +66,8 @@ app$callback(
     function(selected_year, selected_regions) {
         p <- ggplot(df_year_region %>%
             filter(year == selected_year, region %in% selected_regions)) +
-            aes(y = reorder(region, sum_co2_per_capita, ), x = sum_co2_per_capita, fill = region) +
+            aes(y = reorder(region, sum_co2_per_capita, ),
+            x = sum_co2_per_capita, fill = region) +
             geom_bar(stat = "identity") +
             labs(x = "CO2 emissions per capita", y = "Region")
 
