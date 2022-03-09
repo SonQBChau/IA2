@@ -18,44 +18,86 @@ df_year_region <- df_non_na %>%
 
 
 app$layout(
-    dbcContainer(
+    div(
         list(
-            dccGraph(id = "bar_chart"),
-            dccSlider(
-                id = "slider",
-                min = 1914,
-                max = 2014,
-                step = 10,
-                marks = list(
-                    "1914" = "1914",
-                    "1924" = "1924",
-                    "1934" = "1934",
-                    "1944" = "1944",
-                    "1954" = "1954",
-                    "1964" = "1964",
-                    "1974" = "1974",
-                    "1984" = "1984",
-                    "1994" = "1994",
-                    "2004" = "2004",
-                    "2014" = "2014"
-                ),
-                value = 1914,
+            dbcRow(className = "text-center bg-warning",
+                list(
+                    h1("Gapminder Challenge"),
+                    p(
+                        paste(
+                            "Take the challenges below to see how you understand global issues such as healthcare and finance development."
+                        )
+                    ),
+                    p(
+                        paste(
+                            "Test yourselves now!"
+                        )
+                    )
+                )
             ),
-            dccDropdown(
-                id = "dropdown",
-                options = c(
-                    "Africa",
-                    "Americas",
-                    "Asia",
-                    "Europe",
-                    "Oceania"
-                ),
-                value = c("Americas", "Asia", "Europe", "Oceania", "Africa"),
-                multi = TRUE
+            dbcRow(
+                list(
+                    dbcCol(dbcCard(className = "m-3 p-3",
+                        list(
+                            dccGraph(id = "bar_chart"),
+                            dccSlider(
+                                id = "slider",
+                                min = 1914,
+                                max = 2014,
+                                step = 10,
+                                marks = list(
+                                    "1914" = "1914",
+                                    "1924" = "1924",
+                                    "1934" = "1934",
+                                    "1944" = "1944",
+                                    "1954" = "1954",
+                                    "1964" = "1964",
+                                    "1974" = "1974",
+                                    "1984" = "1984",
+                                    "1994" = "1994",
+                                    "2004" = "2004",
+                                    "2014" = "2014"
+                                ),
+                                value = 1914,
+                            ),
+                            dccDropdown(
+                                id = "dropdown",
+                                options = c(
+                                    "Africa",
+                                    "Americas",
+                                    "Asia",
+                                    "Europe",
+                                    "Oceania"
+                                ),
+                                value = c("Americas", "Asia", "Europe", "Oceania", "Africa"),
+                                multi = TRUE
+                            )
+                        )
+                    ),
+                    md = 6
+                    ),
+                    dbcCol(
+                        dbcCard(className = "m-3 p-3", div(
+                            "Card 2"
+                        )),
+                        md = 6
+                    )
+                )
+            ),
+            dbcRow(
+                list(
+                    dbcCol(dbcCard(className = "m-3 p-3",div(
+                        "Card 3"
+                    )), md = 6),
+                    dbcCol(dbcCard(className = "m-3 p-3",div(
+                        "Card 4"
+                    )), md = 6)
+                )
             )
         )
     )
 )
+
 
 app$callback(
     output("bar_chart", "figure"),
