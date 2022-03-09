@@ -7,12 +7,15 @@ library(tidyr)
 app <- Dash$new(external_stylesheets = dbcThemes$BOOTSTRAP)
 
 df <- readr::read_csv(here::here("data", "raw", "world-data-gapminder_raw.csv"))
-df_non_na <- df %>%
-    mutate(
-        across(everything(), ~ replace_na(.x, 0))
-    )
+# df_non_na <- df %>%
+#     mutate(
+#         across(everything(), ~ replace_na(.x, 0))
+#     )
 
-df_year_region <- df_non_na %>%
+df[is.na(df)] <- 0
+# print(df)
+
+df_year_region <- df %>%
     group_by(year, region) %>%
     summarise(sum_co2_per_capita = sum(co2_per_capita))
 
