@@ -70,8 +70,6 @@ app$callback(
             x = sum_co2_per_capita, fill = region) +
             geom_bar(stat = "identity") +
             labs(x = "CO2 emissions per capita", y = "Region")
-
-        print(ggplotly(p) %>% layout())
         ggplotly(p) %>% layout()
     }
 )
